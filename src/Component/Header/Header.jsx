@@ -8,6 +8,7 @@ const Header = () => {
             <Link style={{padding:'10px'}}  to="/login">Login</Link>
             <Link style={{padding:'10px'}}  to="/loginfrom">Login-F</Link>
             <Link style={{padding:'10px'}}  to="/register"> Register</Link>
+            <Link style={{padding:'10px'}}  to="/register-rbs"> Register RBS</Link>
         </div>
     );
 };
