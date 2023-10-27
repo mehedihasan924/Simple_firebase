@@ -31,6 +31,8 @@ const Register = () => {
                     const loginUser=result.user;
                     console.log(loginUser);
                     setError(" Success Full login") 
+                 // Sob Clear click on submit button   
+                    event.target.reset();
                 })
                 
                 .catch(error=>{
