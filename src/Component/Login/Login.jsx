@@ -44,8 +44,6 @@ const Login = () => {
                 console.log(error)
             })
     }
-
-
     return (
         <div style={{marginTop:"20px"}}>
             {/* toggle SignIn and Singn Out Button */}

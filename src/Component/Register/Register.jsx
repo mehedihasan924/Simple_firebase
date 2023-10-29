@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
 // Fireabase connent
 import app from '../Firebase2/firebase.config';
@@ -9,8 +10,8 @@ const auth = getAuth(app);
 const Register = () => {
    // Error massage show korar jonno
    const [error, setError]=useState('')
-
     const [email, setemail]=useState('')
+
 // Input field data show system 
     const handleEmailChange=(event)=>{
         console.log(event.target.value);
@@ -20,11 +21,26 @@ const Register = () => {
     const handleSubmit=(event)=>{
        //1. prevent page not refresh
        event.preventDefault();
+
+
+       setError('')
        //2. Collect from data
         const email=event.target.email.value;
         const password=event.target.password.value
         console.log(email, password);
-
+              // Validation
+                if(!/(?=.*[A-Z])/.test(password)){
+                    setError('Please Add 2 Uparcase');
+                    return;
+                }
+                if(!/(?=.*[0-9].*[0-9])/.test(password)){
+                    setError('Please Add two Number');
+                    return;
+                }
+                else if(password.length<6){
+                    setError('Please Atlest 6 Chaacter input')
+                }
+                
             //  3. Creat user ib firebase
             createUserWithEmailAndPassword(auth ,email, password )
                 .then(result=>{
@@ -49,6 +65,8 @@ const Register = () => {
 
     return (
         <div className='w-50 mx-auto'>
+<h4> Akane Registerer sate Login-f page connent kora hoyase</h4>
+
             <h1> Register From </h1>
             {/* // Input field data show system  */}
             <h1>{email}</h1>
@@ -60,7 +78,7 @@ const Register = () => {
                <br />
                <h6 className='text-danger'> {error} </h6>
                <input className='btn btn-primary' style={{marginTop:"10px"}} type="submit" value="Register" />
-             
+               <p> <small> Are you all ready loged ? <Link to="/loginfrom"> Login</Link> </small></p>
          </form>
           
         </div>
